@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Content/bootstrap.min.css" />
+        <link rel="stylesheet" href="Content/site.css" asp-append-version="true" />
+        <style type="text/css"></style>
+    </head>
+    <body>
+        <h1 align="center">麥當當快樂餐點</h1>
+        <table width="60%" align="center">
+            <tr>
+                <td>                   
+                    <h2 align="center">我的購物車</h2>
+                </td>
+            </tr>    
+            <tr>
+                <td align="right">
+                   <a th:href="'/'"  class="btn btn-primary">回首頁</a>
+                </td>
+            </tr>  
+        </table>
+            <table  width="60%" align="center" border="1">
+            <tr th:each="o:${orders}">
+                <td> <span th:text="${o.mealnum}"></span></td>
+                <td><img  th:src="@{ ${'/images/'+o.mealnum+'.png'} }"  style="width:40%"></td>
+                <td> <span th:text="${o.mealtitle}"></span></td>
+                <td> <span th:text="${o.qty}"></span></td>
+                <td> <span th:text="${o.price}"></span></td>
+                <td> <span th:text="${o.total}"></span></td>
+                <td align="right">
+                   <a th:href="'/delete?num='+${o.mealnum}"  onclick="return confirm('確定刪除嗎？');"  class="btn btn-danger">刪除</a>                   
+                </td>
+            </tr>
+            <tr><td align="right" colspan="7">總計:<span th:text="${total}"></span> </td></tr>
+        </table>
+    </body>
+</html>

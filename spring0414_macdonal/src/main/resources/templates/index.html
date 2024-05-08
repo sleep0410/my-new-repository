@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Content/bootstrap.min.css" />
+        <link rel="stylesheet" href="Content/site.css" asp-append-version="true" />
+
+
+    </head>
+    <body style="margin-left: 200px;margin-right: 200px;align-content: center">
+        <h1>麥當當快樂餐點</h1>
+        <h2 >Hello <span th:text="${session.name}"></span> 歡迎光臨! </h2>
+        <table width="40%">
+            <tr>
+                <td><a th:href="'/'"  style='font-size:20px;text-decoration:none'>首頁</a></td>
+                 <td><a th:href="${'/showCar?acc='+session.account}"  style='font-size:20px;text-decoration:none'>購物車</a></td>
+                <td><div th:if="${session.account==null}"><a th:href="'/login'"  style='font-size:20px;text-decoration:none'>登入</a></div></td>
+                <td><div th:if="${session.account!=null}"><a th:href="'/logout'"  style='font-size:20px;text-decoration:none'>登出</a></div></td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+        </table>
+        <p>&nbsp;</p>
+        <table>
+            <tr  th:each="m:${meals}">
+                <td>
+                   <img  th:src="@{ ${'/images/'+m.img} }"  style="width:70%">
+                </td>
+                <td>
+                <div class="caption"> 
+                    <h3 th:text="${m.title}"></h3>
+                    <p style="font-size:20px">單價:<span th:text="${m.price}"></span></p>                    
+                    <div th:if="${session.account!=null}">  <p><a th:href="'/AddCar?num='+${m.num}"  class="btn btn-primary">加入購物車</a></p>  </div></div>  
+              </td>
+          </tr>
+        </table>
+    </body>
+</html>
